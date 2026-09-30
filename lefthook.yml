@@ -1,0 +1,22 @@
+# 本地门禁（可被 --no-verify 绕过，所以 AGENTS.md 禁止使用它；服务端 CI 才是强制层）
+pre-commit:
+  parallel: true
+  commands:
+    gitleaks:
+      run: scripts/run-gitleaks.sh git --pre-commit --staged --no-banner --redact .
+    ruff-format:
+      glob: "*.py"
+      run: uv run --locked ruff format --check {staged_files}
+    ruff-lint:
+      glob: "*.py"
+      run: uv run --locked ruff check {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx --no-install commitlint --edit {1}
+
+pre-push:
+  commands:
+    test:
+      run: just test

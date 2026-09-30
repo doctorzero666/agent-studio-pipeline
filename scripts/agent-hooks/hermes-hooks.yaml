@@ -1,0 +1,8 @@
+# Hermes 用户级安装模板。安装前把 __STUDIO_HOOK_DIR__ 替换为已审核副本的绝对目录。
+# 将 hermes_dispatch.py 与共用 guard_bash.py 复制到该目录，不执行目标仓库里的脚本。
+hooks:
+  pre_tool_call:
+    - matcher: "terminal"
+      command: "python3 -I \"__STUDIO_HOOK_DIR__/hermes_dispatch.py\" \"__STUDIO_HOOK_DIR__/guard_bash.py\""
+      timeout: 10
+      fail_closed: true

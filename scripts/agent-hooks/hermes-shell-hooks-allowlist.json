@@ -1,0 +1,8 @@
+{
+  "approvals": [
+    {
+      "event": "pre_tool_call",
+      "command": "python3 -I \"__STUDIO_HOOK_DIR__/hermes_dispatch.py\" \"__STUDIO_HOOK_DIR__/guard_bash.py\""
+    }
+  ]
+}
