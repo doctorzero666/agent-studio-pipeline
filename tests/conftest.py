@@ -12,6 +12,17 @@ from pathlib import Path
 import pytest
 
 
+@pytest.fixture(autouse=True)
+def isolate_outer_git_environment(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Git hooks export repository selectors; fixtures must create their own repos.
+
+    Tests may still inject GIT_* variables explicitly after this isolation.
+    """
+    for key in tuple(os.environ):
+        if key.startswith("GIT_"):
+            monkeypatch.delenv(key)
+
+
 @dataclass
 class TaskWorkspace:
     root: Path
