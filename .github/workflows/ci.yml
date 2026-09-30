@@ -32,6 +32,8 @@ jobs:
           mv gitleaks "$HOME/.local/bin/gitleaks"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           rm "$archive" checksums.txt selected-checksum.txt
+      - name: Deliberate failure for server protection acceptance
+        run: exit 1
       - run: just ci
       - run: uv build
 
