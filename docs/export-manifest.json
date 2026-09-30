@@ -1,0 +1,43 @@
+{
+  "method": "file allowlist, no source Git history or private documentation",
+  "sources": {
+    "base": "8075da0",
+    "hooks": "0dee806",
+    "handoff": "55bb16f"
+  },
+  "imported_files": [
+    ".claude/hooks/format_python.py",
+    ".claude/hooks/guard_bash.py",
+    ".claude/hooks/session_start.py",
+    ".claude/hooks/stop_check.py",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+    "commitlint.config.mjs",
+    "lefthook.yml",
+    "package-lock.json",
+    "package.json",
+    "scripts/agent-hooks/hermes-hooks.yaml",
+    "scripts/agent-hooks/hermes-shell-hooks-allowlist.json",
+    "scripts/agent-hooks/hermes_dispatch.py",
+    "scripts/agent-hooks/lib-livetest.sh",
+    "scripts/agent-hooks/live-test.sh",
+    "scripts/agent-hooks/manual-codex-no-sandbox.sh",
+    "scripts/run-gitleaks.sh",
+    "src/studio_tools/__init__.py",
+    "src/studio_tools/check_studio.py",
+    "src/studio_tools/checkpoint.py",
+    "src/studio_tools/launcher.py",
+    "src/studio_tools/task_files.py",
+    "tests/conftest.py",
+    "tests/fixtures/app-lib.sh",
+    "tests/test_agent_hooks.py",
+    "tests/test_check_studio.py",
+    "tests/test_checkpoint.py",
+    "tests/test_cli.py",
+    "tests/test_hook_livetest.py",
+    "tests/test_hooks.py",
+    "tests/test_launcher.py",
+    "tests/test_rules_9_3.py",
+    "tests/test_task_commands.py"
+  ]
+}

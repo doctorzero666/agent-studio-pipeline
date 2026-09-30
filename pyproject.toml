@@ -1,0 +1,46 @@
+[project]
+name = "agent-studio-pipeline"
+version = "0.1.0a1"
+description = "Local-first task handoffs and isolated worktrees for coding agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Agent Studio Pipeline contributors"}]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/doctorzero666/agent-studio-pipeline"
+Issues = "https://github.com/doctorzero666/agent-studio-pipeline/issues"
+
+[project.scripts]
+studio-check = "studio_tools.check_studio:main"
+studio-launch = "studio_tools.launcher:main"
+studio-checkpoint = "studio_tools.checkpoint:main"
+studio = "studio_tools.scaffold:main"
+studio-run = "studio_tools.runner:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.6,<1"]
+
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/studio_tools"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["node_modules", ".claude/worktrees"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.hatch.build.targets.wheel.force-include]
+".claude/hooks" = "studio_tools/templates/application/.claude/hooks"
+".claude/settings.json" = "studio_tools/templates/application/.claude/settings.json"

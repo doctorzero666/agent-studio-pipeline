@@ -1,0 +1,9 @@
+{
+  "name": "studio-tools-devtools",
+  "private": true,
+  "description": "仅用于提交信息检查（commitlint）；Python 代码不依赖 node。",
+  "devDependencies": {
+    "@commitlint/cli": "21.2.3",
+    "@commitlint/config-conventional": "21.2.3"
+  }
+}

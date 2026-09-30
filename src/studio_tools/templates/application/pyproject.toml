@@ -1,0 +1,12 @@
+[project]
+name = "studio-example-app"
+version = "0.1.0"
+requires-python = ">=3.11"
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.6,<1"]
+[tool.ruff]
+line-length = 120
+extend-exclude = [".claude/worktrees"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
