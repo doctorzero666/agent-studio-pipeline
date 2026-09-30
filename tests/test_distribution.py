@@ -51,6 +51,25 @@ def test_init_never_overwrites_existing_directory(tmp_path, private_home):
     assert content.read_text() == "keep"
 
 
+def test_generated_application_tests_run_without_source_pythonpath(tmp_path, private_home):
+    studio = scaffold.initialize(tmp_path / "workspace")
+    app = scaffold.add_app(studio, "sample")
+    # Exercise the console entry point used by the generated justfile, with
+    # installed dev tools but without this repository's import-path assistance.
+    env = {key: value for key, value in os.environ.items() if key not in {"PYTHONPATH", "PYTEST_ADDOPTS"}}
+    result = subprocess.run(
+        [str(Path(sys.executable).with_name("pytest")), "-q"],
+        cwd=app,
+        env=env,
+        text=True,
+        capture_output=True,
+        timeout=30,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "passed" in result.stdout
+
+
 @pytest.mark.parametrize("value", ["../escape", "a/b", "-option", "space name", "a" * 65, ""])
 def test_invalid_application_name(value):
     with pytest.raises(TaskError):
